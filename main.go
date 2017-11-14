@@ -66,14 +66,14 @@ func buildURL(urlRaw string, avoidCache ...string) string {
 }
 
 func extractValue(bodyRaw string, regexString string) string {
-	if bodyRaw == "" {
-		return "0"
-	} else {
-		re := regexp.MustCompile(regexString)
-		regexpResult := re.FindAllStringSubmatch(bodyRaw, -1)
+	re:= regexp.MustCompile(regexString)
+	regexpResult := re.FindAllStringSubmatch(bodyRaw, -1)
 
+	if len(regexpResult) > 0 {
 		return regexpResult[0][1]
 	}
+
+	return "0"
 }
 
 func buildSingleResultLine(fullyUrl string, value string, custom_metric_string string) string {
