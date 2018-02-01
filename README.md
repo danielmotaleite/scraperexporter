@@ -2,7 +2,7 @@
 
 Simple webserver that scrapes sites on configuration, filter the retrieved data and export them on Prometheus format
 
-[![Build Status](https://travis-ci.org/marcelosousaalmeida/scraperexporter.svg?branch=master)](https://travis-ci.org/marcelosousaalmeida/scraperexporter)
+[![Build Status](https://travis-ci.org/marcelosousaalmeida/scraperexporter.svg?branch=master)](https://travis-ci.org/marcelosousaalmeida/scraperexporter) [![Go Report Card](https://goreportcard.com/badge/github.com/marcelosousaalmeida/scraperexporter)](https://goreportcard.com/report/github.com/marcelosousaalmeida/scraperexporter)
 
 ## Installation
 
