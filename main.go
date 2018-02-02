@@ -46,7 +46,7 @@ func main() {
 						defer wg.Done()
 
 						fullURL := nethelper.BuildURL(site+config.Path, config.AvoidCache)
-						bodyRaw := nethelper.GetHttpBody(fullURL)
+						bodyRaw := nethelper.GetHTTPBody(fullURL)
 						extractedValue := stringutil.ExtractValue(bodyRaw, config.RegexpString)
 						builtSingleResultLine := stringutil.BuildSingleResultLine(site, extractedValue, config.MetricString)
 

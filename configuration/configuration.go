@@ -1,21 +1,24 @@
 package configuration
 
 import (
-	"os"
+	"bytes"
 	"encoding/json"
 	"log"
-	"bytes"
+	"os"
 )
 
+// Configuration structure
 type Configuration struct {
-	Sites []string
-	MetricString string
-	AvoidCache string
-	Path string
+	Sites           []string
+	MetricString    string
+	AvoidCache      string
+	Path            string
 	ListenerAddress string
-	RegexpString string
+	RegexpString    string
 }
 
+// ReadConfiguration read configuration from filename
+// It returns Configuration struct
 func ReadConfiguration(filename string) Configuration {
 	file, _ := os.Open(filename)
 	decoder := json.NewDecoder(file)
@@ -28,6 +31,7 @@ func ReadConfiguration(filename string) Configuration {
 	return configuration
 }
 
+// BuildConfigExample builds example of configuration file
 func BuildConfigExample() *bytes.Buffer {
 	configuration := Configuration{}
 
