@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -41,12 +42,21 @@ func BuildURL(urlRaw string, avoidCache ...string) string {
 		log.Fatalf("Error building URL: %s", err)
 	}
 
+	q := u.Query()
+
 	if len(avoidCache) > 0 && avoidCache[0] == "true" {
 		queryString := strconv.FormatInt(time.Now().Unix(), 10)
-		q := u.Query()
 		q.Set("z"+queryString, queryString)
-		u.RawQuery = q.Encode()
 	}
 
+	u.RawQuery = CompatibleRFC3986Encode(q.Encode())
+
 	return u.String()
+}
+
+// CompatibleRFC3986Encode Compatible with RFC 3986.
+func CompatibleRFC3986Encode(str string) string {
+	resultStr := str
+	resultStr = strings.Replace(resultStr, "+", "%2B", -1)
+	return resultStr
 }
