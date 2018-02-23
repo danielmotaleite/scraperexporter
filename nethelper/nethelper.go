@@ -19,14 +19,14 @@ func GetHTTPBody(url string) string {
 	resp, err := client.Do(request)
 
 	if err != nil {
-		log.Panicf("Error making HTTP request: %s", err)
+		log.Printf("Error making HTTP request: %s", err)
 		return ""
 	}
 
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Panicf("Error reading HTTP request body: %s", err)
+		log.Printf("Error reading HTTP request body: %s", err)
 		return ""
 	}
 
@@ -39,7 +39,7 @@ func BuildURL(urlRaw string, avoidCache ...string) string {
 	u, err := url.Parse(urlRaw)
 
 	if err != nil {
-		log.Fatalf("Error building URL: %s", err)
+		log.Printf("Error building URL: %s", err)
 	}
 
 	q := u.Query()
